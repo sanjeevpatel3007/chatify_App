@@ -24,14 +24,16 @@ export default function Signup() {
         console.log(userInfo); // Check if data is correct
       
        await axios
-          .post("http://localhost:3000/user/signup", userInfo)
+          .post("http://localhost:3000/user/signup", userInfo , {
+            withCredentials: true,  // Ensure cookies are sent
+          })
           .then((res) => {
             // console.log(res.data); // Correctly log response data
             if (res.data) {
               alert("Signup successful");
             }
       
-            localStorage.setItem("ChatifyApp", JSON.stringify(res.data)); // Store correct response data
+            localStorage.setItem("jwt", JSON.stringify(res.data)); // Store correct response data
             setAuthUser(res.data);
           })
           .catch((error) => {

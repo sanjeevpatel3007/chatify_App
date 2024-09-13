@@ -2,6 +2,7 @@ import React from 'react'
 import Search from './Search'
 import Users from './Users'
 import Logout from './Logout'
+import Check from './Check'
 export default function Left() {
     return (
         <div className="w-[30%] bg-black text-gray-300 flex-col h-full">
@@ -10,7 +11,8 @@ export default function Left() {
             </div>
 
             <div className="flex-grow overflow-y-auto">
-                <Users />
+                {/* <Users /> */}
+                <Check/>
             </div>
             <div className="flex-none">
                 <Logout />

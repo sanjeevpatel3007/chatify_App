@@ -92,6 +92,17 @@ const logout = async (req, res) => {
   }
 }
 
+const allUsers= async(req,res)=>{
+  try {
+    const loggedInUser=req.user._id;
+      const filteredUsers=await User.find({_id:{$ne:loggedInUser}}).select("-password");
+      res.status(200).json({
+        filteredUsers,
+      })
+  } catch (error) {
+    console.log("error in alluser controller " +error);
+  }
+}
 
 
-export default { signup, login, logout };
+export default { signup, login, logout ,allUsers};

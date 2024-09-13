@@ -12,7 +12,7 @@ export default function Login() {
         formState: { errors },
       } = useForm()
     
-    //   const onSubmit = (data) => console.log(data)
+      // const onSubmit = (data) => console.log(data)
  
 
     const onSubmit = async(data) => {
@@ -23,13 +23,16 @@ export default function Login() {
         console.log(userInfo); // Check if data is correct
     
       await  axios
-          .post("http://localhost:3000/user/login", userInfo)
+          // .post("http://localhost:3000/user/login", userInfo)
+          .post("http://localhost:3000/user/login", userInfo, 
+            { withCredentials: true })
+
           .then((res) => {
             if (res.data) {
               alert("Login successful");
             }
     
-            localStorage.setItem("ChatifyApp", JSON.stringify(res.data)); // Store correct response data
+            localStorage.setItem("jwt", JSON.stringify(res.data)); // Store correct response data
             setAuthUser(res.data);
           })
           .catch((error) => {
